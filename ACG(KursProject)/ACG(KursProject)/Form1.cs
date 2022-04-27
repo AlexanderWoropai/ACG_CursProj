@@ -13,15 +13,18 @@ namespace ACG_KursProject_
     public partial class Form1 : Form
     {
         int cnt = 0;
-        Point [][] p;
         bool mdown;
         String mode;
         int catch_line_lindex;
         bool point_focused;
         int catch_point_lindex;
+
+        //List<Point[]> p;
+        Point [][] p;
+        
         public Form1()
         {
-            mode = "Рисуем линию";
+            mode = "Рисуем";
             point_focused = false;
             catch_point_lindex = -1;
             catch_line_lindex = -1;
@@ -38,30 +41,30 @@ namespace ACG_KursProject_
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
             mdown = false;
-            if (mode == "Рисуем линию")
+            if (mode == "Рисуем")
             {
                 p[cnt][1].X = e.X;
                 p[cnt][1].Y = e.Y;
                 cnt++;
             }
-            if (mode == "Изменяем линию")
+            if (mode == "Изменяем")
             {
                 p[catch_line_lindex][catch_point_lindex].X = e.X;
                 p[catch_line_lindex][catch_point_lindex].Y = e.Y;
             }
             MainPanel.Invalidate();
-            mode = "Рисуем линию";
+            mode = "Рисуем";
         }
 
         private void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
             mdown = true;
-            if (mode == "Рисуем линию")
+            if (mode == "Рисуем")
             {
                 p[cnt][0].X = e.X;
                 p[cnt][0].Y = e.Y;
             }
-            if (mode == "Изменяем линию") 
+            if (mode == "Изменяем") 
             {
                 p[catch_line_lindex][catch_point_lindex].X = e.X;
                 p[catch_line_lindex][catch_point_lindex].Y = e.Y;
@@ -72,12 +75,12 @@ namespace ACG_KursProject_
         {
             if (mdown)
             {
-                if (mode == "Рисуем линию")
+                if (mode == "Рисуем")
                 {
                     p[cnt][1].X = e.X;
                     p[cnt][1].Y = e.Y;
                 }
-                if (mode == "Изменяем линию")
+                if (mode == "Изменяем")
                 {
                     p[catch_line_lindex][catch_point_lindex].X = e.X;
                     p[catch_line_lindex][catch_point_lindex].Y = e.Y;
@@ -85,7 +88,7 @@ namespace ACG_KursProject_
             }
             else
             {
-                mode = "Рисуем линию";
+                mode = "Рисуем";
                 point_focused = false;
                 catch_point_lindex = -1;
                 catch_line_lindex = -1;
@@ -96,14 +99,14 @@ namespace ACG_KursProject_
                         point_focused = true;
                         catch_point_lindex = 0;
                         catch_line_lindex = i;
-                        mode = "Изменяем линию";
+                        mode = "Изменяем";
                     }
                     if (Math.Abs(p[i][1].X - e.X) < 5 && Math.Abs(p[i][1].Y - e.Y) < 5)
                     {
                         point_focused = true;
                         catch_point_lindex = 1;
                         catch_line_lindex = i;
-                        mode = "Изменяем линию";
+                        mode = "Изменяем";
                     }
                 }
             }
@@ -159,7 +162,7 @@ namespace ACG_KursProject_
 
         private void MainPanel_MouseClick(object sender, MouseEventArgs e)
         {
-            //MessageBox.Show(String.Format("X : {0} ; Y : {1}", e.Location.X, e.Location.Y));
+            MessageBox.Show(String.Format("X : {0} ; Y : {1}", e.Location.X, e.Location.Y));
         }
     }
 }
