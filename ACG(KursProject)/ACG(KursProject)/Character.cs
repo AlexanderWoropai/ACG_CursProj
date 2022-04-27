@@ -11,17 +11,16 @@ namespace ACG_KursProject_
     class Character
     {
         protected PointF[] coordinates;
-        protected PointF[] borderCoordinates;
         public Character(PointF center) { }
         public virtual PointF[] GetCoordinates() 
         {
             return null;
         }
-        public virtual PointF[] GetBorders()
+        public virtual PointF GetCoordinates(int index)
         {
-            return null;
+            return new PointF();
         }
-        public virtual void ChangeCoordinates(PointF[] coordinates) { }
+        public virtual void ChangeCoordinates(int index, PointF coordinates) { }
         public virtual void Paint(PaintEventArgs e) { }
         public virtual void PaintBorders(PaintEventArgs e) { }
     }

@@ -15,26 +15,23 @@ namespace ACG_KursProject_
             coordinates = new PointF[2];
             coordinates[0] = new PointF(center.X - 10, center.Y);
             coordinates[1] = new PointF(center.X + 10, center.Y);
-            borderCoordinates = coordinates;
         }
         public override PointF[] GetCoordinates()
         {
             return coordinates;
         }
-        public override PointF[] GetBorders() 
+        public override PointF GetCoordinates(int index)
         {
-            return borderCoordinates;
+            return coordinates[index];
         }
-        public override void ChangeCoordinates(PointF[] coordinates)
+        public override void ChangeCoordinates(int index, PointF coordinates)
         {
-            if (coordinates.Length > 2) throw new ArgumentException("You must supply a valid argument!");
-            this.coordinates = coordinates;
-            this.borderCoordinates = coordinates;
+            this.coordinates[index] = coordinates;
         }
         public override void Paint(PaintEventArgs e) 
         {
             var pen = new Pen(Color.Black);
-            pen.Width = 10;
+            pen.Width = 2;
             Graphics g = e.Graphics;
             var Coordinates = GetCoordinates();
             g.DrawLine(pen, Coordinates[0], Coordinates[1]);
@@ -42,9 +39,9 @@ namespace ACG_KursProject_
         public override void PaintBorders(PaintEventArgs e)
         {
             var pen = new Pen(Color.Red);
-            pen.Width = 5;
+            pen.Width = 1;
             Graphics g = e.Graphics;
-            var borderCoordinates = GetBorders();
+            var borderCoordinates = GetCoordinates();
             g.DrawPolygon(pen, borderCoordinates);
         }
     }

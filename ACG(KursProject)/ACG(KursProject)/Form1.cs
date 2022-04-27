@@ -16,7 +16,7 @@ namespace ACG_KursProject_
 
         bool mdown;
         String mode;
-        int catch_line_lindex;
+        int catch_character_index;
         bool point_focused;
         int catch_point_lindex;
 
@@ -28,8 +28,9 @@ namespace ACG_KursProject_
             mode = "Рисуем";
             point_focused = false;
             catch_point_lindex = -1;
-            catch_line_lindex = -1;
+            catch_character_index = -1;
             mdown = false;
+
             InitializeComponent();
             p = new List<PointF[]>();
             someCharacters = new List<Character>();
@@ -39,15 +40,12 @@ namespace ACG_KursProject_
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
             mdown = false;
-            /*if (mode == "Рисуем")
-            {
-                p[p.Count - 1][1].X = e.X;
-                p[p.Count - 1][1].Y = e.Y;
-            }*/
             if (mode == "Изменяем")
             {
-                p[catch_line_lindex][catch_point_lindex].X = e.X;
-                p[catch_line_lindex][catch_point_lindex].Y = e.Y;
+                var point = new PointF();
+                point.X = e.X;
+                point.Y = e.Y;
+                someCharacters[catch_character_index].ChangeCoordinates(catch_point_lindex, point);
             }
             MainPanel.Invalidate();
             mode = "Рисуем";
@@ -56,10 +54,12 @@ namespace ACG_KursProject_
         private void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
             mdown = true;
-            if (mode == "Изменяем") 
+            if (mode == "Изменяем")
             {
-                p[catch_line_lindex][catch_point_lindex].X = e.X;
-                p[catch_line_lindex][catch_point_lindex].Y = e.Y;
+                var point = new PointF();
+                point.X = e.X;
+                point.Y = e.Y;
+                someCharacters[catch_character_index].ChangeCoordinates(catch_point_lindex, point);
             }
         }
 
@@ -67,15 +67,12 @@ namespace ACG_KursProject_
         {
             if (mdown)
             {
-                /*if (mode == "Рисуем")
-                {
-                    p[p.Count-1][1].X = e.X;
-                    p[p.Count-1][1].Y = e.Y;
-                }*/
                 if (mode == "Изменяем")
                 {
-                    p[catch_line_lindex][catch_point_lindex].X = e.X;
-                    p[catch_line_lindex][catch_point_lindex].Y = e.Y;
+                    var point = new PointF();
+                    point.X = e.X;
+                    point.Y = e.Y;
+                    someCharacters[catch_character_index].ChangeCoordinates(catch_point_lindex, point);
                 }
             }
             else
@@ -83,23 +80,37 @@ namespace ACG_KursProject_
                 mode = "Рисуем";
                 point_focused = false;
                 catch_point_lindex = -1;
-                catch_line_lindex = -1;
-                for (int i = 0; i < p.Count; i++) 
+                catch_character_index = -1;
+                for (int i = 0; i < someCharacters.Count; i++) 
                 {
-                    if (Math.Abs(p[i][0].X - e.X) < 5 && Math.Abs(p[i][0].Y - e.Y) < 5) 
+                    var coordinates = someCharacters[i].GetCoordinates();
+                    for (int j = 0; j < coordinates.Length; j++) 
+                    {
+                        if (Math.Abs(coordinates[j].X - e.X) < 5 && Math.Abs(coordinates[j].Y - e.Y) < 5)
+                        {
+                            point_focused = true;
+                            catch_point_lindex = j;
+                            catch_character_index = i;
+                            mode = "Изменяем";
+                            break;
+                        }
+                    }
+
+
+                    /*if (Math.Abs(p[i][0].X - e.X) < 5 && Math.Abs(p[i][0].Y - e.Y) < 5) 
                     {
                         point_focused = true;
                         catch_point_lindex = 0;
-                        catch_line_lindex = i;
+                        catch_character_index = i;
                         mode = "Изменяем";
                     }
                     if (Math.Abs(p[i][1].X - e.X) < 5 && Math.Abs(p[i][1].Y - e.Y) < 5)
                     {
                         point_focused = true;
                         catch_point_lindex = 1;
-                        catch_line_lindex = i;
+                        catch_character_index = i;
                         mode = "Изменяем";
-                    }
+                    }*/
                 }
             }
             MainPanel.Invalidate();
@@ -139,18 +150,12 @@ namespace ACG_KursProject_
 
             if (point_focused) 
             {
-                g.DrawRectangle(new Pen(Color.Red), p[catch_line_lindex][catch_point_lindex].X - 5, p[catch_line_lindex][catch_point_lindex].Y - 5, 10, 10);
+                g.DrawRectangle(new Pen(Color.Red), someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
             }
             for (int i = 0; i < someCharacters.Count; i++) 
             {
-                //g.DrawLine(new Pen(Color.Black), p[i][0].X, p[i][0].Y, p[i][1].X, p[i][1].Y);
                 someCharacters[i].Paint(e);
                 someCharacters[i].PaintBorders(e);
-            }
-            if (mdown) 
-            {
-                g.DrawLine(new Pen(Color.Black), p[p.Count-1][0].X, p[p.Count-1][0].Y, p[p.Count-1][1].X, p[p.Count-1][1].Y);
-                //доп фигуры для отрисовки : кривые бизье , элипс , прямоугольник (Rectangle), многоугольник (Polygon)
             }
         }
 
@@ -165,8 +170,6 @@ namespace ACG_KursProject_
                 mas.X = e.Location.X;
                 mas.Y = e.Location.Y;
                 someCharacters.Add(charFactory.Create(selectetCharacter, mas));
-
-                //p.Add(mas);
             }
         }
 
