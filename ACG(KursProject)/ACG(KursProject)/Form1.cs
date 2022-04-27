@@ -12,7 +12,7 @@ namespace ACG_KursProject_
 {
     public partial class Form1 : Form
     {
-        string selectetCharacter;
+        string selectetCharacter = "Line";
 
         bool mdown;
         String mode;
@@ -21,7 +21,7 @@ namespace ACG_KursProject_
         int catch_point_lindex;
 
         List<PointF[]> p;
-        //Point [][] p;
+        List<Character> someCharacters;
         
         public Form1()
         {
@@ -32,23 +32,18 @@ namespace ACG_KursProject_
             mdown = false;
             InitializeComponent();
             p = new List<PointF[]>();
-            /*p = new Point[100][];
-            for (int i = 0; i < 100; i++) 
-            {
-                p[i] = new Point[2];
-            }*/
+            someCharacters = new List<Character>();
         }
 
 
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
             mdown = false;
-            if (mode == "Рисуем")
+            /*if (mode == "Рисуем")
             {
                 p[p.Count - 1][1].X = e.X;
                 p[p.Count - 1][1].Y = e.Y;
-                //cnt++;
-            }
+            }*/
             if (mode == "Изменяем")
             {
                 p[catch_line_lindex][catch_point_lindex].X = e.X;
@@ -61,15 +56,6 @@ namespace ACG_KursProject_
         private void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
             mdown = true;
-            if (mode == "Рисуем")
-            {
-                var mas = new PointF[2];
-                mas[0].X = e.X;
-                mas[0].Y = e.Y;
-                p.Add(mas);
-                /*p[cnt][0].X = e.X;
-                p[cnt][0].Y = e.Y;*/
-            }
             if (mode == "Изменяем") 
             {
                 p[catch_line_lindex][catch_point_lindex].X = e.X;
@@ -81,11 +67,11 @@ namespace ACG_KursProject_
         {
             if (mdown)
             {
-                if (mode == "Рисуем")
+                /*if (mode == "Рисуем")
                 {
                     p[p.Count-1][1].X = e.X;
                     p[p.Count-1][1].Y = e.Y;
-                }
+                }*/
                 if (mode == "Изменяем")
                 {
                     p[catch_line_lindex][catch_point_lindex].X = e.X;
@@ -155,9 +141,11 @@ namespace ACG_KursProject_
             {
                 g.DrawRectangle(new Pen(Color.Red), p[catch_line_lindex][catch_point_lindex].X - 5, p[catch_line_lindex][catch_point_lindex].Y - 5, 10, 10);
             }
-            for (int i = 0; i < p.Count; i++) 
+            for (int i = 0; i < someCharacters.Count; i++) 
             {
-                g.DrawLine(new Pen(Color.Black), p[i][0].X, p[i][0].Y, p[i][1].X, p[i][1].Y);
+                //g.DrawLine(new Pen(Color.Black), p[i][0].X, p[i][0].Y, p[i][1].X, p[i][1].Y);
+                someCharacters[i].Paint(e);
+                someCharacters[i].PaintBorders(e);
             }
             if (mdown) 
             {
@@ -168,7 +156,18 @@ namespace ACG_KursProject_
 
         private void MainPanel_MouseClick(object sender, MouseEventArgs e)
         {
+            if (selectetCharacter == "") { MessageBox.Show("Выберите тип фигуры!"); return; }
             //MessageBox.Show(String.Format("X : {0} ; Y : {1}", e.Location.X, e.Location.Y));
+            CharacterFactory charFactory = new CharacterFactory();
+            if (mode == "Рисуем")
+            {
+                var mas = new PointF();
+                mas.X = e.Location.X;
+                mas.Y = e.Location.Y;
+                someCharacters.Add(charFactory.Create(selectetCharacter, mas));
+
+                //p.Add(mas);
+            }
         }
 
         private void toolStripMenuItemLine_Click(object sender, EventArgs e)
