@@ -153,6 +153,7 @@ namespace ACG_KursProject_
             if (mdown) 
             {
                 g.DrawLine(new Pen(Color.Black), p[cnt][0].X, p[cnt][0].Y, p[cnt][1].X, p[cnt][1].Y);
+                //доп фигуры для отрисовки : кривые бизье , элипс , прямоугольник (Rectangle), многоугольник (Polygon)
             }
         }
 
