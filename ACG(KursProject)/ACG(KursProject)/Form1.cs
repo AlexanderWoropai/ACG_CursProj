@@ -12,15 +12,15 @@ namespace ACG_KursProject_
 {
     public partial class Form1 : Form
     {
-        string selectetCharacter = "Line";
+
+        //доп фигуры для отрисовки : кривые бизье , элипс , прямоугольник (Rectangle), многоугольник (Polygon)
+        string selectetCharacter = "Ellipse";
 
         bool mdown;
         String mode;
         int catch_character_index;
         bool point_focused;
         int catch_point_lindex;
-
-        List<PointF[]> p;
         List<Character> someCharacters;
         
         public Form1()
@@ -32,7 +32,6 @@ namespace ACG_KursProject_
             mdown = false;
 
             InitializeComponent();
-            p = new List<PointF[]>();
             someCharacters = new List<Character>();
         }
 
@@ -95,22 +94,6 @@ namespace ACG_KursProject_
                             break;
                         }
                     }
-
-
-                    /*if (Math.Abs(p[i][0].X - e.X) < 5 && Math.Abs(p[i][0].Y - e.Y) < 5) 
-                    {
-                        point_focused = true;
-                        catch_point_lindex = 0;
-                        catch_character_index = i;
-                        mode = "Изменяем";
-                    }
-                    if (Math.Abs(p[i][1].X - e.X) < 5 && Math.Abs(p[i][1].Y - e.Y) < 5)
-                    {
-                        point_focused = true;
-                        catch_point_lindex = 1;
-                        catch_character_index = i;
-                        mode = "Изменяем";
-                    }*/
                 }
             }
             MainPanel.Invalidate();
@@ -120,14 +103,14 @@ namespace ACG_KursProject_
         {
             Graphics g = e.Graphics;
 
-            /*
-            // Create pen.
+
+           /* // Create pen.
             Pen blackPen = new Pen(Color.Black);
 
             // Create points for curve.
             Point start = new Point(100, 100);
             Point control1 = new Point(200, 10);
-            Point control2 = new Point(350, 50);
+            Point control2 = new Point(400, 10);
             Point end = new Point(500, 100);
 
             // Draw arc to screen.

@@ -12,6 +12,9 @@ namespace ACG_KursProject_
         public Character Create(string type, PointF center) 
         {
             if (type == "Line") return new Line(center);
+            if (type == "Ellipse") return new Ellipse(center);
+            if (type == "Bezier") return new Bezier(center);
+            if (type == "Rectangle") return new Rectangle(center);
             return null;
         }
     }

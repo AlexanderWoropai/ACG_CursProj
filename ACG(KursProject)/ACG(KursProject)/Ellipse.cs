@@ -8,13 +8,13 @@ using System.Windows.Forms;
 
 namespace ACG_KursProject_
 {
-    class Line : Character
+    class Ellipse : Character
     {
-        public Line(PointF center) : base(center) 
+        public Ellipse(PointF center) : base(center)
         {
             coordinates = new PointF[2];
-            coordinates[0] = new PointF(center.X - 10, center.Y);
-            coordinates[1] = new PointF(center.X + 10, center.Y);
+            coordinates[0] = new PointF(center.X - 10, center.Y-10);
+            coordinates[1] = new PointF(center.X + 10, center.Y+10);
         }
         public override PointF[] GetCoordinates()
         {
@@ -28,17 +28,18 @@ namespace ACG_KursProject_
         {
             this.coordinates[index] = coordinates;
         }
-        public override void Paint(PaintEventArgs e) 
+        public override void Paint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             var Coordinates = GetCoordinates();
-            g.DrawLine(new Pen(Color.Black), Coordinates[0], Coordinates[1]);
+            g.DrawEllipse(new Pen(Color.Black), new RectangleF(Coordinates[0].X, Coordinates[0].Y, Coordinates[1].X, Coordinates[1].Y));
         }
         public override void PaintBorders(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            var borderCoordinates = GetCoordinates();
-            g.DrawPolygon(new Pen(Color.Black), borderCoordinates);
+            var Coordinates = GetCoordinates();
+            g.DrawRectangles(new Pen(Color.Green), new RectangleF[] { new RectangleF(Coordinates[0].X, Coordinates[0].Y, Coordinates[1].X, Coordinates[1].Y) });
+            g.DrawPolygon(new Pen(Color.Red), Coordinates);
         }
     }
 }
