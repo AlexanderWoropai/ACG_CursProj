@@ -12,15 +12,18 @@ namespace ACG_KursProject_
     {
         protected PointF[] coordinates;
         public Character(PointF center) { }
-        public virtual PointF[] GetCoordinates() 
+        public PointF[] GetCoordinates()
         {
-            return null;
+            return coordinates;
         }
-        public virtual PointF GetCoordinates(int index)
+        public PointF GetCoordinates(int index)
         {
-            return new PointF();
+            return coordinates[index];
         }
-        public virtual void ChangeCoordinates(int index, PointF coordinates) { }
+        public void ChangeCoordinates(int index, PointF coordinates)
+        {
+            this.coordinates[index] = coordinates;
+        }
         public virtual void Paint(PaintEventArgs e) { }
         public virtual void PaintBorders(PaintEventArgs e) { }
     }

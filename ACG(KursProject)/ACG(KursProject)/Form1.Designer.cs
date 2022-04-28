@@ -32,7 +32,12 @@ namespace ACG_KursProject_
             this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemBezier = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemEllipse = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemTriangle = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRectangle = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPentagon = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemHexagon = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,28 +58,70 @@ namespace ACG_KursProject_
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.DarkGray;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemLine,
-            this.toolStripMenuItem2});
+            this.toolStripMenuItemBezier,
+            this.toolStripMenuItemEllipse,
+            this.toolStripMenuItemTriangle,
+            this.toolStripMenuItemRectangle,
+            this.toolStripMenuItemPentagon,
+            this.toolStripMenuItemHexagon});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(910, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(910, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItemLine
             // 
             this.toolStripMenuItemLine.Name = "toolStripMenuItemLine";
-            this.toolStripMenuItemLine.Size = new System.Drawing.Size(50, 26);
+            this.toolStripMenuItemLine.Size = new System.Drawing.Size(50, 24);
             this.toolStripMenuItemLine.Text = "Line";
             this.toolStripMenuItemLine.Click += new System.EventHandler(this.toolStripMenuItemLine_Click);
             // 
-            // toolStripMenuItem2
+            // toolStripMenuItemBezier
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(31, 26);
-            this.toolStripMenuItem2.Text = "2";
+            this.toolStripMenuItemBezier.Name = "toolStripMenuItemBezier";
+            this.toolStripMenuItemBezier.Size = new System.Drawing.Size(64, 24);
+            this.toolStripMenuItemBezier.Text = "Bezier";
+            this.toolStripMenuItemBezier.Click += new System.EventHandler(this.toolStripMenuItemBezier_Click);
+            // 
+            // toolStripMenuItemEllipse
+            // 
+            this.toolStripMenuItemEllipse.Name = "toolStripMenuItemEllipse";
+            this.toolStripMenuItemEllipse.Size = new System.Drawing.Size(66, 24);
+            this.toolStripMenuItemEllipse.Text = "Ellipse";
+            this.toolStripMenuItemEllipse.Click += new System.EventHandler(this.toolStripMenuItemEllipse_Click);
+            // 
+            // toolStripMenuItemTriangle
+            // 
+            this.toolStripMenuItemTriangle.Name = "toolStripMenuItemTriangle";
+            this.toolStripMenuItemTriangle.Size = new System.Drawing.Size(76, 24);
+            this.toolStripMenuItemTriangle.Text = "Triangle";
+            this.toolStripMenuItemTriangle.Click += new System.EventHandler(this.toolStripMenuItemTriangle_Click);
+            // 
+            // toolStripMenuItemRectangle
+            // 
+            this.toolStripMenuItemRectangle.Name = "toolStripMenuItemRectangle";
+            this.toolStripMenuItemRectangle.Size = new System.Drawing.Size(85, 24);
+            this.toolStripMenuItemRectangle.Text = "Rectange";
+            this.toolStripMenuItemRectangle.Click += new System.EventHandler(this.toolStripMenuItemRectangle_Click);
+            // 
+            // toolStripMenuItemPentagon
+            // 
+            this.toolStripMenuItemPentagon.Name = "toolStripMenuItemPentagon";
+            this.toolStripMenuItemPentagon.Size = new System.Drawing.Size(85, 24);
+            this.toolStripMenuItemPentagon.Text = "Pentagon";
+            this.toolStripMenuItemPentagon.Click += new System.EventHandler(this.toolStripMenuItemPentagon_Click);
+            // 
+            // toolStripMenuItemHexagon
+            // 
+            this.toolStripMenuItemHexagon.Name = "toolStripMenuItemHexagon";
+            this.toolStripMenuItemHexagon.Size = new System.Drawing.Size(83, 24);
+            this.toolStripMenuItemHexagon.Text = "Hexagon";
+            this.toolStripMenuItemHexagon.Click += new System.EventHandler(this.toolStripMenuItemHexagon_Click);
             // 
             // Form1
             // 
@@ -98,7 +145,12 @@ namespace ACG_KursProject_
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLine;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBezier;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEllipse;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTriangle;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRectangle;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPentagon;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemHexagon;
     }
 }
 

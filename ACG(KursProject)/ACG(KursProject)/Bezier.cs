@@ -18,18 +18,6 @@ namespace ACG_KursProject_
             coordinates[2] = new PointF(center.X + 10, center.Y);
             coordinates[3] = new PointF(center.X + 20, center.Y + 10);
         }
-        public override PointF[] GetCoordinates()
-        {
-            return coordinates;
-        }
-        public override PointF GetCoordinates(int index)
-        {
-            return coordinates[index];
-        }
-        public override void ChangeCoordinates(int index, PointF coordinates)
-        {
-            this.coordinates[index] = coordinates;
-        }
         public override void Paint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;

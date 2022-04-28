@@ -12,9 +12,7 @@ namespace ACG_KursProject_
 {
     public partial class Form1 : Form
     {
-
-        //доп фигуры для отрисовки : кривые бизье , элипс , прямоугольник (Rectangle), многоугольник (Polygon)
-        string selectetCharacter = "Hexagon";
+        string selectetCharacter = "";
 
         bool mdown;
         String mode;
@@ -34,7 +32,6 @@ namespace ACG_KursProject_
             InitializeComponent();
             someCharacters = new List<Character>();
         }
-
 
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
@@ -103,34 +100,6 @@ namespace ACG_KursProject_
         {
             Graphics g = e.Graphics;
 
-
-           /* // Create pen.
-            Pen blackPen = new Pen(Color.Black);
-
-            // Create points for curve.
-            Point start = new Point(100, 100);
-            Point control1 = new Point(200, 10);
-            Point control2 = new Point(400, 10);
-            Point end = new Point(500, 100);
-
-            // Draw arc to screen.
-            g.DrawBezier(blackPen, start, control1, control2, end);//*/
-
-            /*
-            // Create pen.
-            Pen blackPen = new Pen(Color.Black);
-
-            // Create location and size of ellipse.
-            int x = 200;
-            int y = 200;
-            int width = 200;
-            int height = 100;
-
-            // Draw ellipse to screen.
-            e.Graphics.DrawEllipse(blackPen, x, y, width, height);//*/
-
-
-
             if (point_focused) 
             {
                 g.DrawRectangle(new Pen(Color.Red), someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
@@ -159,7 +128,61 @@ namespace ACG_KursProject_
         private void toolStripMenuItemLine_Click(object sender, EventArgs e)
         {
             selectetCharacter = "Line";
+            CancelAll();
             toolStripMenuItemLine.BackColor = Color.Red;
+        }
+
+        private void toolStripMenuItemBezier_Click(object sender, EventArgs e)
+        {
+            selectetCharacter = "Bezier";
+            CancelAll();
+            toolStripMenuItemBezier.BackColor = Color.Red;
+        }
+
+        private void toolStripMenuItemEllipse_Click(object sender, EventArgs e)
+        {
+            selectetCharacter = "Ellipse";
+            CancelAll();
+            toolStripMenuItemEllipse.BackColor = Color.Red;
+        }
+
+        private void toolStripMenuItemTriangle_Click(object sender, EventArgs e)
+        {
+            selectetCharacter = "Triangle";
+            CancelAll();
+            toolStripMenuItemTriangle.BackColor = Color.Red;
+        }
+
+        private void toolStripMenuItemRectangle_Click(object sender, EventArgs e)
+        {
+            selectetCharacter = "Rectangle";
+            CancelAll();
+            toolStripMenuItemRectangle.BackColor = Color.Red;
+        }
+
+        private void toolStripMenuItemPentagon_Click(object sender, EventArgs e)
+        {
+            selectetCharacter = "Pentagon";
+            CancelAll();
+            toolStripMenuItemPentagon.BackColor = Color.Red;
+        }
+
+        private void toolStripMenuItemHexagon_Click(object sender, EventArgs e)
+        {
+            selectetCharacter = "Hexagon";
+            CancelAll();
+            toolStripMenuItemHexagon.BackColor = Color.Red;
+        }
+
+        private void CancelAll() 
+        {
+            toolStripMenuItemLine.BackColor = Color.DarkGray;
+            toolStripMenuItemBezier.BackColor = Color.DarkGray;
+            toolStripMenuItemEllipse.BackColor = Color.DarkGray;
+            toolStripMenuItemTriangle.BackColor = Color.DarkGray;
+            toolStripMenuItemRectangle.BackColor = Color.DarkGray;
+            toolStripMenuItemPentagon.BackColor = Color.DarkGray;
+            toolStripMenuItemHexagon.BackColor = Color.DarkGray;
         }
     }
 }
