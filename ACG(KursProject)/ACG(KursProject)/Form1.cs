@@ -14,7 +14,7 @@ namespace ACG_KursProject_
     {
 
         //доп фигуры для отрисовки : кривые бизье , элипс , прямоугольник (Rectangle), многоугольник (Polygon)
-        string selectetCharacter = "Ellipse";
+        string selectetCharacter = "Hexagon";
 
         bool mdown;
         String mode;

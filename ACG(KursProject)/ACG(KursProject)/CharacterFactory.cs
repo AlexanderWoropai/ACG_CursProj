@@ -15,6 +15,9 @@ namespace ACG_KursProject_
             if (type == "Ellipse") return new Ellipse(center);
             if (type == "Bezier") return new Bezier(center);
             if (type == "Rectangle") return new Rectangle(center);
+            if (type == "Triangle") return new Triangle(center);
+            if (type == "Pentagon") return new Pentagon(center);
+            if (type == "Hexagon") return new Hexagon(center);
             return null;
         }
     }
