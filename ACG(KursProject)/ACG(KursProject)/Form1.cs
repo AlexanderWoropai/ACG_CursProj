@@ -20,17 +20,16 @@ namespace ACG_KursProject_
         bool point_focused;
         int catch_point_lindex;
         List<Character> someCharacters;
+        Stack<Character> someDeletedCharacters;
         
         public Form1()
         {
-            mode = "Рисуем";
-            point_focused = false;
-            catch_point_lindex = -2;
-            catch_character_index = -2;
+            SetDefaultSettings();
             mdown = false;
 
             InitializeComponent();
             someCharacters = new List<Character>();
+            someDeletedCharacters = new Stack<Character>();
         }
 
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
@@ -65,10 +64,7 @@ namespace ACG_KursProject_
             }
             else
             {
-                mode = "Рисуем";
-                point_focused = false;
-                catch_point_lindex = -2;
-                catch_character_index = -2;
+                SetDefaultSettings();
                 for (int i = 0; i < someCharacters.Count; i++) 
                 {
                     var coordinates = someCharacters[i].GetCoordinates();
@@ -195,6 +191,14 @@ namespace ACG_KursProject_
             toolStripMenuItemHexagon.BackColor = Color.DarkGray;
         }
 
+        private void SetDefaultSettings() 
+        {
+            mode = "Рисуем";
+            point_focused = false;
+            catch_point_lindex = -2;
+            catch_character_index = -2;
+        }
+
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -202,15 +206,18 @@ namespace ACG_KursProject_
                 case Keys.Delete:
                     if (point_focused && catch_point_lindex == -1) 
                     {
+                        someDeletedCharacters.Push(someCharacters[catch_character_index]);
                         someCharacters.RemoveAt(catch_character_index);
-                        mode = "Рисуем";
-                        point_focused = false;
-                        catch_point_lindex = -2;
-                        catch_character_index = -2;
+                        SetDefaultSettings();
                     }
+                    break;
+                case Keys.Z:
+                    if (e.Modifiers == Keys.Control && someDeletedCharacters.Count > 0)
+                        someCharacters.Add(someDeletedCharacters.Pop());
                     break;
             }
             MainPanel.Invalidate();
+            
         }
     }
 }
