@@ -13,11 +13,12 @@ namespace ACG_KursProject_
         public Pentagon(PointF center) : base(center)
         {
             coordinates = new PointF[5];
-            coordinates[0] = new PointF(center.X, center.Y-10);
+            coordinates[0] = new PointF(center.X, center.Y-20);
             coordinates[1] = new PointF(center.X - 10, center.Y);
             coordinates[2] = new PointF(center.X - 5, center.Y+10);
             coordinates[3] = new PointF(center.X + 5, center.Y+10);
             coordinates[4] = new PointF(center.X + 10, center.Y);
+            this.center = center;
         }
         public override void Paint(PaintEventArgs e)
         {

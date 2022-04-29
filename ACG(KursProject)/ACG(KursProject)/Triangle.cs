@@ -13,9 +13,10 @@ namespace ACG_KursProject_
         public Triangle(PointF center) : base(center)
         {
             coordinates = new PointF[3];
-            coordinates[0] = new PointF(center.X, center.Y - 10);
+            coordinates[0] = new PointF(center.X, center.Y - 20);
             coordinates[1] = new PointF(center.X - 10, center.Y + 10);
             coordinates[2] = new PointF(center.X + 10, center.Y + 10);
+            this.center = center;
         }
         public override void Paint(PaintEventArgs e)
         {

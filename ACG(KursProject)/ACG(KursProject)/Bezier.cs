@@ -17,6 +17,8 @@ namespace ACG_KursProject_
             coordinates[1] = new PointF(center.X - 10, center.Y);
             coordinates[2] = new PointF(center.X + 10, center.Y);
             coordinates[3] = new PointF(center.X + 20, center.Y + 10);
+            this.center = new PointF((coordinates[0].X + coordinates[1].X + coordinates[2].X + coordinates[3].X)/4,
+                (coordinates[0].Y + coordinates[1].Y + coordinates[2].Y + coordinates[3].Y) / 4);
         }
         public override void Paint(PaintEventArgs e)
         {

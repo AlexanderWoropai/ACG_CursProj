@@ -25,8 +25,8 @@ namespace ACG_KursProject_
         {
             mode = "Рисуем";
             point_focused = false;
-            catch_point_lindex = -1;
-            catch_character_index = -1;
+            catch_point_lindex = -2;
+            catch_character_index = -2;
             mdown = false;
 
             InitializeComponent();
@@ -36,27 +36,19 @@ namespace ACG_KursProject_
         private void MainPanel_MouseUp(object sender, MouseEventArgs e)
         {
             mdown = false;
-            if (mode == "Изменяем")
+            if (mode == "Перемещаем") 
             {
                 var point = new PointF();
                 point.X = e.X;
                 point.Y = e.Y;
-                someCharacters[catch_character_index].ChangeCoordinates(catch_point_lindex, point);
+                someCharacters[catch_character_index].MoveAllCoordinatesTo(point);
             }
-            MainPanel.Invalidate();
             mode = "Рисуем";
         }
 
         private void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
             mdown = true;
-            if (mode == "Изменяем")
-            {
-                var point = new PointF();
-                point.X = e.X;
-                point.Y = e.Y;
-                someCharacters[catch_character_index].ChangeCoordinates(catch_point_lindex, point);
-            }
         }
 
         private void MainPanel_MouseMove(object sender, MouseEventArgs e)
@@ -80,6 +72,15 @@ namespace ACG_KursProject_
                 for (int i = 0; i < someCharacters.Count; i++) 
                 {
                     var coordinates = someCharacters[i].GetCoordinates();
+                    var center = someCharacters[i].GetCenter();
+                    if (Math.Abs(center.X - e.X) < 5 && Math.Abs(center.Y - e.Y) < 5)
+                    {
+                        point_focused = true;
+                        catch_point_lindex = -1;
+                        catch_character_index = i;
+                        mode = "Перемещаем";
+                        break;
+                    }
                     for (int j = 0; j < coordinates.Length; j++) 
                     {
                         if (Math.Abs(coordinates[j].X - e.X) < 5 && Math.Abs(coordinates[j].Y - e.Y) < 5)
@@ -99,10 +100,21 @@ namespace ACG_KursProject_
         private void MainPanel_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-
             if (point_focused) 
             {
-                g.DrawRectangle(new Pen(Color.Red), someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
+                Pen newPen;
+                if (catch_point_lindex == -1)
+                {
+                    newPen = new Pen(Color.Green);
+                    g.DrawRectangle(newPen, someCharacters[catch_character_index].GetCenter().X - 5, someCharacters[catch_character_index].GetCenter().Y - 5, 10, 10);
+                }
+                else 
+                {
+                    newPen = new Pen(Color.Red);
+                    g.DrawRectangle(newPen, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
+                }
+                //if (catch_point_lindex == -1 && mdown) newPen = new Pen(Color.Green); else newPen = new Pen(Color.Red);
+                //g.DrawRectangle(newPen, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
             }
             for (int i = 0; i < someCharacters.Count; i++) 
             {
