@@ -132,6 +132,7 @@ namespace ACG_KursProject_
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

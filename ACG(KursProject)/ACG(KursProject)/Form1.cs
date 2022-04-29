@@ -67,8 +67,8 @@ namespace ACG_KursProject_
             {
                 mode = "Рисуем";
                 point_focused = false;
-                catch_point_lindex = -1;
-                catch_character_index = -1;
+                catch_point_lindex = -2;
+                catch_character_index = -2;
                 for (int i = 0; i < someCharacters.Count; i++) 
                 {
                     var coordinates = someCharacters[i].GetCoordinates();
@@ -113,8 +113,6 @@ namespace ACG_KursProject_
                     newPen = new Pen(Color.Red);
                     g.DrawRectangle(newPen, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
                 }
-                //if (catch_point_lindex == -1 && mdown) newPen = new Pen(Color.Green); else newPen = new Pen(Color.Red);
-                //g.DrawRectangle(newPen, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).X - 5, someCharacters[catch_character_index].GetCoordinates(catch_point_lindex).Y - 5, 10, 10);
             }
             for (int i = 0; i < someCharacters.Count; i++) 
             {
@@ -195,6 +193,24 @@ namespace ACG_KursProject_
             toolStripMenuItemRectangle.BackColor = Color.DarkGray;
             toolStripMenuItemPentagon.BackColor = Color.DarkGray;
             toolStripMenuItemHexagon.BackColor = Color.DarkGray;
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    if (point_focused && catch_point_lindex == -1) 
+                    {
+                        someCharacters.RemoveAt(catch_character_index);
+                        mode = "Рисуем";
+                        point_focused = false;
+                        catch_point_lindex = -2;
+                        catch_character_index = -2;
+                    }
+                    break;
+            }
+            MainPanel.Invalidate();
         }
     }
 }
