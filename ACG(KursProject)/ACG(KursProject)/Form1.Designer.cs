@@ -29,6 +29,7 @@ namespace ACG_KursProject_
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemLine = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,56 +71,56 @@ namespace ACG_KursProject_
             this.toolStripMenuItemHexagon});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(910, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(910, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItemLine
             // 
             this.toolStripMenuItemLine.Name = "toolStripMenuItemLine";
-            this.toolStripMenuItemLine.Size = new System.Drawing.Size(50, 24);
+            this.toolStripMenuItemLine.Size = new System.Drawing.Size(50, 26);
             this.toolStripMenuItemLine.Text = "Line";
             this.toolStripMenuItemLine.Click += new System.EventHandler(this.toolStripMenuItemLine_Click);
             // 
             // toolStripMenuItemBezier
             // 
             this.toolStripMenuItemBezier.Name = "toolStripMenuItemBezier";
-            this.toolStripMenuItemBezier.Size = new System.Drawing.Size(64, 24);
+            this.toolStripMenuItemBezier.Size = new System.Drawing.Size(64, 26);
             this.toolStripMenuItemBezier.Text = "Bezier";
             this.toolStripMenuItemBezier.Click += new System.EventHandler(this.toolStripMenuItemBezier_Click);
             // 
             // toolStripMenuItemEllipse
             // 
             this.toolStripMenuItemEllipse.Name = "toolStripMenuItemEllipse";
-            this.toolStripMenuItemEllipse.Size = new System.Drawing.Size(66, 24);
+            this.toolStripMenuItemEllipse.Size = new System.Drawing.Size(66, 26);
             this.toolStripMenuItemEllipse.Text = "Ellipse";
             this.toolStripMenuItemEllipse.Click += new System.EventHandler(this.toolStripMenuItemEllipse_Click);
             // 
             // toolStripMenuItemTriangle
             // 
             this.toolStripMenuItemTriangle.Name = "toolStripMenuItemTriangle";
-            this.toolStripMenuItemTriangle.Size = new System.Drawing.Size(76, 24);
+            this.toolStripMenuItemTriangle.Size = new System.Drawing.Size(76, 26);
             this.toolStripMenuItemTriangle.Text = "Triangle";
             this.toolStripMenuItemTriangle.Click += new System.EventHandler(this.toolStripMenuItemTriangle_Click);
             // 
             // toolStripMenuItemRectangle
             // 
             this.toolStripMenuItemRectangle.Name = "toolStripMenuItemRectangle";
-            this.toolStripMenuItemRectangle.Size = new System.Drawing.Size(85, 24);
+            this.toolStripMenuItemRectangle.Size = new System.Drawing.Size(85, 26);
             this.toolStripMenuItemRectangle.Text = "Rectange";
             this.toolStripMenuItemRectangle.Click += new System.EventHandler(this.toolStripMenuItemRectangle_Click);
             // 
             // toolStripMenuItemPentagon
             // 
             this.toolStripMenuItemPentagon.Name = "toolStripMenuItemPentagon";
-            this.toolStripMenuItemPentagon.Size = new System.Drawing.Size(85, 24);
+            this.toolStripMenuItemPentagon.Size = new System.Drawing.Size(85, 26);
             this.toolStripMenuItemPentagon.Text = "Pentagon";
             this.toolStripMenuItemPentagon.Click += new System.EventHandler(this.toolStripMenuItemPentagon_Click);
             // 
             // toolStripMenuItemHexagon
             // 
             this.toolStripMenuItemHexagon.Name = "toolStripMenuItemHexagon";
-            this.toolStripMenuItemHexagon.Size = new System.Drawing.Size(83, 24);
+            this.toolStripMenuItemHexagon.Size = new System.Drawing.Size(83, 26);
             this.toolStripMenuItemHexagon.Text = "Hexagon";
             this.toolStripMenuItemHexagon.Click += new System.EventHandler(this.toolStripMenuItemHexagon_Click);
             // 
@@ -129,9 +130,10 @@ namespace ACG_KursProject_
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(910, 498);
             this.Controls.Add(this.MainPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Vecor graphics engine";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
